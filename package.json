@@ -1,0 +1,17 @@
+{
+  "name": "plugingetnet",
+  "version": "0.0.2",
+  "description": "",
+  "cordova": {
+    "id": "plugingetnet",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "ISC"
+}
