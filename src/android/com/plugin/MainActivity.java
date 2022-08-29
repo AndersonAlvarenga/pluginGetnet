@@ -92,5 +92,6 @@ public class MainActivity extends CordovaPlugin {
             });
             return true;
         }
+        return true;
     }
 }
