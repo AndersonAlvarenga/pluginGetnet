@@ -11,9 +11,6 @@ import android.widget.TextView;
 
 public class NFCGedi extends Activity {
 
-    ICL icl = null;
-    private NfcAdapter nfcAdapter;
-    private TextView text;
     private int id;
     private static int Contagem = 0;
 
