@@ -67,6 +67,8 @@ public class MainActivity extends CordovaPlugin {
 
     public MainActivity() {
         super();
+
+        
     }
 
     @Override
