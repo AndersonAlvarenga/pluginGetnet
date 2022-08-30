@@ -84,7 +84,7 @@ public class MainActivity extends CordovaPlugin {
                     try {
                        status = gertecPrinter.teste();
                         Toast.makeText(cordova.getActivity(), status, Toast.LENGTH_LONG).show();
-                        callbackContext.success(status);*/
+                        callbackContext.success(status);
                     } catch (Exception e) {
                         e.printStackTrace();
                         callbackContext.error("Erro " + e.getMessage());
