@@ -97,7 +97,7 @@ public class GertecPrinter {
     if(this.posDigital.getInstance().isInitiated){
       try{
         this.posDigital.getInstance().printer.init();
-        this.posDigital.getInstance().printer.setGray(5)
+        this.posDigital.getInstance().printer.setGray(5);
         this.posDigital.getInstance().printer.defineFontFormat(FontFormat.MEDIUM);
         this.posDigital.getInstance().printer.addText(AlignMode.LEFT, "Barcode: 20");
         this.posDigital.getInstance().printer.addText(AlignMode.LEFT, " ");
@@ -107,9 +107,9 @@ public class GertecPrinter {
       }
     
     }else{
-      return "Instance não foi inicializada".
+      return "Instance não foi inicializada";
     }
-    return "Ok"
+    return "Ok";
 
   } 
 
@@ -117,10 +117,10 @@ public class GertecPrinter {
   private fun getPrinterCallback(): IPrinterCallback.Stub {
     return object : IPrinterCallback.Stub() {
       @Throws(RemoteException::class) override fun onSuccess() {
-        openInfoDialog("Impresso com sucesso")
+        openInfoDialog("Impresso com sucesso");
       }
       @Throws(RemoteException::class) override fun onError(cause: Int) {
-        openErrorDialog(parseStatus(cause))
+        openErrorDialog(parseStatus(cause));
       }
     }
   }
