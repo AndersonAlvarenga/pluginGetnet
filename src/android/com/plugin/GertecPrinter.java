@@ -28,6 +28,7 @@ import com.getnet.posdigital.mifare.IMifareService;
 import com.getnet.posdigital.printer.IPrinterService;
 import com.getnet.posdigital.printer.IPrinterCallback;
 import com.getnet.posdigital.printer.AlignMode;
+import com.getnet.posdigital.printer.FontFormat;
 import java.util.Iterator;
 
 
@@ -103,7 +104,7 @@ public class GertecPrinter {
         pos.getPrinter().defineFontFormat(FontFormat.MEDIUM);
         pos.getPrinter().addText(AlignMode.LEFT, "Barcode: 20");
         pos.getPrinter().addText(AlignMode.LEFT, " ");
-        pos.getPrinter().print(getPrinterCallback());
+        pos.getPrinter().print(IPrinterCallback.Stub());
       }catch (Exception e){
         return "Erro ao imprimir: "+e.getMessage();
       }
@@ -114,13 +115,6 @@ public class GertecPrinter {
     return "Ok";
 
   } 
-
- 
-  private void getPrinterCallback(){
-    return IPrinterCallback.Stub();
-  }
-   
-
 
 
 }
