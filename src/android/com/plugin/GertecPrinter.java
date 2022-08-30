@@ -93,7 +93,7 @@ public class GertecPrinter {
     return this.posDigital.getStatistic();
   }
   
-  public String print(String texto){
+  public String print(){
     if(this.posDigital.getInstance().isInitiated){
       try{
         this.posDigital.getInstance().printer.init();
