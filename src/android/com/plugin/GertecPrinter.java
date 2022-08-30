@@ -27,6 +27,7 @@ import com.getnet.posdigital.led.ILedService;
 import com.getnet.posdigital.mifare.IMifareService;
 import com.getnet.posdigital.printer.IPrinterService;
 import com.getnet.posdigital.printer.IPrinterCallback;
+import com.getnet.posdigital.printer.AlignMode;
 import java.util.Iterator;
 
 
@@ -65,7 +66,7 @@ public class GertecPrinter {
     return this.posDigital.getPrinter();
   }
 
-  public IcardService getCard(){
+  public ICardService getCard(){
     return this.posDigital.getCard();
   }
 
@@ -94,7 +95,7 @@ public class GertecPrinter {
   }
   
   public String print(){
-    PosDigital pos = this.posdigital.getInstance();
+    PosDigital pos = this.posDigital.getInstance();
     if(pos.isInitiated()){
       try{
         pos.getPrinter().init();
