@@ -118,7 +118,7 @@ public class GertecPrinter {
 
   } 
   private IPrinterCallback getPrinterCallback(){
-    return printCallBack.Stub();
+    return this.printCallBack.Stub();
   }
    
 
