@@ -34,9 +34,11 @@ import java.util.Iterator;
 
 public class GertecPrinter {
   
+  
+
   private Context context;
   private PosDigital posDigital;
-  private IPrinterCallback.Stub stub;
+  private IPrinterCallback.Stub stubIprinter;
   private static final String TAG = "PosDigital";
   private static String servicePackage = "com.getnet.posdigital.service";
   private static String initializeIntent = "com.getnet.posdigital.service.INITIALIZE";
@@ -118,7 +120,8 @@ public class GertecPrinter {
 
   } 
   private IPrinterCallback.Stub getPrinterCallback(){
-    return this.stub.Stub();
+    this.stubIprinter = IPrinterCallback.Stub.Stub();
+    return this.stubIprinter;
   }
    
 
