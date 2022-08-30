@@ -37,7 +37,7 @@ public class GertecPrinter {
   
   private Context context;
   private PosDigital posDigital;
-  private IPrinterCallback printCallBack;
+  private IPrinterCallback.Stub stub;
   private static final String TAG = "PosDigital";
   private static String servicePackage = "com.getnet.posdigital.service";
   private static String initializeIntent = "com.getnet.posdigital.service.INITIALIZE";
@@ -118,8 +118,8 @@ public class GertecPrinter {
     return "Ok";
 
   } 
-  private IPrinterCallback getPrinterCallback(){
-    return Stub.Stub();
+  private IPrinterCallback.Stub getPrinterCallback(){
+    return this.stub.Stub();
   }
    
 
