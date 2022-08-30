@@ -25,7 +25,6 @@ import com.getnet.posdigital.card.ICardService;
 import com.getnet.posdigital.info.IInfoService;
 import com.getnet.posdigital.led.ILedService;
 import com.getnet.posdigital.mifare.IMifareService;
-import com.getnet.posdigital.printer;
 import com.getnet.posdigital.printer.IPrinterService;
 import com.getnet.posdigital.printer.IPrinterCallback;
 import java.util.Iterator;
