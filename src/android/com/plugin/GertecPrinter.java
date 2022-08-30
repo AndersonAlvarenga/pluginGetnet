@@ -27,6 +27,7 @@ import com.getnet.posdigital.led.ILedService;
 import com.getnet.posdigital.mifare.IMifareService;
 import com.getnet.posdigital.printer.IPrinterService;
 import com.getnet.posdigital.printer.IPrinterCallback;
+import com.getnet.posdigital.printer.IPrinterCallback.Stub;
 import com.getnet.posdigital.printer.AlignMode;
 import com.getnet.posdigital.printer.FontFormat;
 import java.util.Iterator;
@@ -118,7 +119,7 @@ public class GertecPrinter {
 
   } 
   private IPrinterCallback getPrinterCallback(){
-    return this.printCallBack.Stub();
+    return Stub.Stub();
   }
    
 
