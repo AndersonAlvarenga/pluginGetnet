@@ -102,8 +102,8 @@ public class GertecPrinter {
         this.posDigital.getInstance().printer.addText(AlignMode.LEFT, "Barcode: 20");
         this.posDigital.getInstance().printer.addText(AlignMode.LEFT, " ");
         this.posDigital.getInstance().printer.print(getPrinterCallback());
-      }catch{
-        return "Erro ao imprimir"
+      }catch (Exception e){
+        return "Erro ao imprimir: "+e.getMessage();
       }
     
     }else{
