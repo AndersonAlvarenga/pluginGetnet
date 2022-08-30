@@ -32,7 +32,7 @@ import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
-import com.getnet.posdigital.PosDigital;
+
 
 import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
 
@@ -82,7 +82,7 @@ public class MainActivity extends CordovaPlugin {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
                     try {
-                       /*status = gertecPrinter.getStatusImpressora();
+                       status = gertecPrinter.teste();
                         Toast.makeText(cordova.getActivity(), status, Toast.LENGTH_LONG).show();
                         callbackContext.success(status);*/
                     } catch (Exception e) {

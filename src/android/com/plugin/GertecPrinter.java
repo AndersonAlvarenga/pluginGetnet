@@ -2,6 +2,8 @@ package com.plugin;
 
 import android.app.Activity;
 import android.content.Context;
+import com.getnet.posdigital.PosDigital;
+
 
 public class GertecPrinter {
   // Definições
@@ -13,7 +15,7 @@ public class GertecPrinter {
     // Vaviáveis iniciais
     private Activity activity;
     private Context context;
-
+    private PosDigital posDigital;
 
     /**
     * Método construtor da classe usando o GPOS 700
@@ -21,6 +23,9 @@ public class GertecPrinter {
     **/
     public GertecPrinter(Context c) {
         this.context = c;
+    }
+    public String teste(){    
+      return this.posDigital.isInitiated();
     }
 
 
