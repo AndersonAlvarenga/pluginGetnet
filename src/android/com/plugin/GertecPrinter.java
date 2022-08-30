@@ -25,7 +25,7 @@ public class GertecPrinter {
         this.context = c;
     }
     public String teste(){    
-      return this.posDigital.isInitiated();
+      return this.posDigital.isInitiated()==true?"True":"False";
     }
 
 
