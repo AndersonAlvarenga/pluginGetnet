@@ -6,4 +6,7 @@ exports.checarImpressora = function (success, error) {
 exports.print = function (success, error) {
     exec(success, error, 'MainActivity', 'imprimir');
 };
+exports.teste = function (success, error) {
+    exec(success, error, 'MainActivity', 'teste');
+};
 
