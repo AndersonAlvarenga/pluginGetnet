@@ -104,7 +104,7 @@ public class GertecPrinter {
         pos.getPrinter().defineFontFormat(FontFormat.MEDIUM);
         pos.getPrinter().addText(AlignMode.LEFT, "Barcode: 20");
         pos.getPrinter().addText(AlignMode.LEFT, " ");
-        pos.getPrinter().print(IPrinterCallback.Stub());
+        pos.getPrinter().print(IPrinterCallback.Stub.Stub());
       }catch (Exception e){
         return "Erro ao imprimir: "+e.getMessage();
       }
