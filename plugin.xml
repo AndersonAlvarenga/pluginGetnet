@@ -4,7 +4,7 @@
     xmlns="http://apache.org/cordova/ns/plugins/1.0" 
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <name>gpos7centos</name>
+    <name>plugingetnet</name>
 
     <!-- módulos js previnem de ter que inserir um <asset> pra cada arquivo js que eu tiver -->
     <js-module name="main" src="www/main.js">
