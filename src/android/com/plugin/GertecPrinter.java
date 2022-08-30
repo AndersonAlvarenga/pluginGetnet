@@ -106,6 +106,7 @@ public class GertecPrinter {
         pos.getPrinter().addText(AlignMode.LEFT, " ");
         IPrinterCallback iprintCallBack;
         pos.getPrinter().print(iprintCallBack.Stub());
+        
       }catch (Exception e){
         return "Erro ao imprimir: "+e.getMessage();
       }
