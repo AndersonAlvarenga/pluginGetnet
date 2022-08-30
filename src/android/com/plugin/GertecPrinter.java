@@ -23,6 +23,7 @@ import com.getnet.posdigital.info.IInfoService;
 import com.getnet.posdigital.led.ILedService;
 import com.getnet.posdigital.mifare.IMifareService;
 import com.getnet.posdigital.printer.IPrinterService;
+import com.getnet.posdigital.printer.IPrinterCallback;
 import com.getnet.posdigital.stat.IStatService;
 import com.getnet.posdigital.PosDigital;
 
@@ -114,15 +115,8 @@ public class GertecPrinter {
   } 
 
  
-  private fun getPrinterCallback(): IPrinterCallback.Stub {
-    return object : IPrinterCallback.Stub() {
-      @Throws(RemoteException::class) override fun onSuccess() {
-        openInfoDialog("Impresso com sucesso");
-      }
-      @Throws(RemoteException::class) override fun onError(cause: Int) {
-        openErrorDialog(parseStatus(cause));
-      }
-    }
+  private void getPrinterCallback(){
+    return IPrinterCallback.Stub();
   }
    
 
