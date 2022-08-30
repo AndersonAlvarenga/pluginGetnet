@@ -15,6 +15,9 @@ import android.os.RemoteException;
 import android.util.Log;
 
 //Import LIB
+import com.getnet.posdigital.PosDigital;
+import com.getnet.posdigital.stat.IStatService;
+import com.getnet.posdigital.IMainService;
 import com.getnet.posdigital.IMainService.Stub;
 import com.getnet.posdigital.beeper.IBeeperService;
 import com.getnet.posdigital.camera.ICameraService;
@@ -22,12 +25,9 @@ import com.getnet.posdigital.card.ICardService;
 import com.getnet.posdigital.info.IInfoService;
 import com.getnet.posdigital.led.ILedService;
 import com.getnet.posdigital.mifare.IMifareService;
+import com.getnet.posdigital.printer;
 import com.getnet.posdigital.printer.IPrinterService;
 import com.getnet.posdigital.printer.IPrinterCallback;
-import com.getnet.posdigital.stat.IStatService;
-import com.getnet.posdigital.PosDigital;
-
-
 import java.util.Iterator;
 
 
@@ -45,7 +45,7 @@ public class GertecPrinter {
   private static Context mParentContext;
   private static BroadcastReceiver initializedBroadcast;
   private static BroadcastReceiver notItializedBroadcast;
-  private static PosDigital posDigital;
+
 
 
 
@@ -58,8 +58,8 @@ public class GertecPrinter {
       this.context = c;
   }
 
-  public String isInitiated(){    
-    return this.posDigital.isInitiated()?"True":"False";
+  public boolean isInitiated(){    
+    return this.posDigital.isInitiated();
   }
 
   public IPrinterService getPrinter(){
@@ -95,14 +95,15 @@ public class GertecPrinter {
   }
   
   public String print(){
-    if(this.posDigital.getInstance().isInitiated){
+    PosDigital pos = this.posdigital.getInstance();
+    if(pos.isInitiated()){
       try{
-        this.posDigital.getInstance().printer.init();
-        this.posDigital.getInstance().printer.setGray(5);
-        this.posDigital.getInstance().printer.defineFontFormat(FontFormat.MEDIUM);
-        this.posDigital.getInstance().printer.addText(AlignMode.LEFT, "Barcode: 20");
-        this.posDigital.getInstance().printer.addText(AlignMode.LEFT, " ");
-        this.posDigital.getInstance().printer.print(getPrinterCallback());
+        pos.getPrinter().init();
+        pos.getPrinter().setGray(5);
+        pos.getPrinter().defineFontFormat(FontFormat.MEDIUM);
+        pos.getPrinter().addText(AlignMode.LEFT, "Barcode: 20");
+        pos.getPrinter().addText(AlignMode.LEFT, " ");
+        pos.getPrinter().print(getPrinterCallback());
       }catch (Exception e){
         return "Erro ao imprimir: "+e.getMessage();
       }
