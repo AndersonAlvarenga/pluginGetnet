@@ -32,6 +32,7 @@ import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
+import com.getnet.posdigital.PosDigital;
 
 import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
 
