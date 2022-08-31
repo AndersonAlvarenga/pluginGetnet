@@ -14,11 +14,16 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import com.getnet.posdigital.PosDigital;
+import com.getnet.posdigital.beeper.IBeeperService;
+
 
 public class GertecPrinter {
   
     private Activity activity;
     private Context context;
+    private PosDigital posDigital;
+
 
     /**
     * Método construtor da classe usando o GPOS 700
@@ -110,6 +115,16 @@ public class GertecPrinter {
         return "getStatusImpressora";
     }
 
+    //Metodos novos para GetNet
+
+    public String beeper(){
+        try{
+            this.posDigital.getInstance().getBeeper().Sucess();
+        }catch(Exception e){
+            return e.getMessage();
+        }
+        return "Sucess";
+    }
 
 
 }
