@@ -1,1 +1,1 @@
-Projeto GertecOneFramework GPOS 700# pluginGetnet
+Projeto GertecOneFramework GPOS 700

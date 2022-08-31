@@ -33,7 +33,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
-
 import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
 
 public class MainActivity extends CordovaPlugin {
@@ -63,13 +62,10 @@ public class MainActivity extends CordovaPlugin {
         super.initialize(cordova, webView);
         this.webView = webView;
         gertecPrinter = new GertecPrinter(cordova.getActivity().getApplicationContext());
-
     }
 
     public MainActivity() {
         super();
-
-
     }
 
     @Override
@@ -82,7 +78,7 @@ public class MainActivity extends CordovaPlugin {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
                     try {
-                       status = gertecPrinter.isInitiated()?"true":"false";
+                        status = gertecPrinter.getStatusImpressora();
                         Toast.makeText(cordova.getActivity(), status, Toast.LENGTH_LONG).show();
                         callbackContext.success(status);
                     } catch (Exception e) {
@@ -93,36 +89,7 @@ public class MainActivity extends CordovaPlugin {
             });
             return true;
         }
-        if (action.equals("imprimir")) {
-            cordova.getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                    try {
-                       status = gertecPrinter.print();
-                        Toast.makeText(cordova.getActivity(), status, Toast.LENGTH_LONG).show();
-                        callbackContext.success(status);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        callbackContext.error("Erro " + e.getMessage());
-                    }
-                }
-            });
-            return true;
-        }
-        if (action.equals("teste")) {
-            cordova.getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                    try {
-                       status = gertecPrinter.teste();
-                        Toast.makeText(cordova.getActivity(), status, Toast.LENGTH_LONG).show();
-                        callbackContext.success(status);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        callbackContext.error("Erro " + e.getMessage());
-                    }
-                }
-            });
-            return true;
-        }
-        return true;
+        return false; // Returning false results in a "MethodNotFound" error.
     }
+
 }

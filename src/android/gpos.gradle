@@ -27,4 +27,5 @@ dependencies {
     
     implementation(name: 'libposdigital-1.7.1-7-release', ext: 'aar')
 
+
 }
