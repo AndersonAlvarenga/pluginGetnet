@@ -40,7 +40,7 @@ public class GertecPrinter {
     private String notInitializedIntent = "com.getnet.posdigital.service.NOT_INITIALIZED";
     /* access modifiers changed from: private */
     public String servicePackage = "com.getnet.posdigital.service";
-
+    public BindCallback bindCallback;
 
     /*public interface BindCallback {
         void onConnected();
@@ -57,12 +57,13 @@ public class GertecPrinter {
     **/
     public GertecPrinter(Context c) {
         this.context = c;
-        register(this.context,BindCallback);
+        register(this.context,this.bindCallback);
     }
 
-    
+  
     
     /* access modifiers changed from: private */
+    /*X
     public void _register(final Context context, final BindCallback bindCallback) {
         context.sendBroadcast(new Intent(this.initializeIntent));
         context.registerReceiver(new BroadcastReceiver() {
@@ -182,8 +183,10 @@ public class GertecPrinter {
             throw new RuntimeException("Service isn't initialized");
         }
     }
+    */
 
     /* access modifiers changed from: private */
+    /*
     public ServiceConnection getServiceConnection(final Context context, final BindCallback bindCallback) {
         return new ServiceConnection() {
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
@@ -199,9 +202,10 @@ public class GertecPrinter {
                     throw new RuntimeException("MainService link to death error.", e2);
                 }
             }
-
+            */
             /* access modifiers changed from: package-private */
-            public final /* synthetic */ void lambda$onServiceConnected$0$PosDigital$3(Context context, BindCallback bindCallback) {
+            /* 
+            public final /* synthetic  void lambda$onServiceConnected$0$PosDigital$3(Context context, BindCallback bindCallback) {
                 GertecPrinter.getInstance()._register(context, bindCallback);
             }
 
@@ -210,7 +214,7 @@ public class GertecPrinter {
             }
         };
     }
-
+    
     public static PosDigital getInstance() {
         if (posDigital != null) {
             return posDigital;
@@ -261,7 +265,7 @@ public class GertecPrinter {
     public static void unregister(Context context) {
         _unregister(context);
     }
-
+    */
 
 
     
@@ -282,7 +286,7 @@ public class GertecPrinter {
     public String beeper(){
         startService(this.context);
         try{
-            IBeeperService beep = this.posDigital.getInstance().getBeeper();
+            IBeeperService beep = GertecPrinter.posDigital.getBeeper();
         }catch(Exception e){
             return e.getMessage();
         }
