@@ -23,6 +23,7 @@ import com.getnet.posdigital.stat.IStatService;
 import com.getnet.posdigital.PosDigital;
 
 
+
 public class GertecPrinter {
   
     private Activity activity;
@@ -38,6 +39,7 @@ public class GertecPrinter {
     private String notInitializedIntent = "com.getnet.posdigital.service.NOT_INITIALIZED";
     /* access modifiers changed from: private */
     public String servicePackage = "com.getnet.posdigital.service";
+    public BindCallback bind = new BindCallback();
 
     public interface BindCallback {
         void onConnected();
@@ -54,7 +56,7 @@ public class GertecPrinter {
     **/
     public GertecPrinter(Context c) {
         this.context = c;
-        register(this.context,this.BindCallback);
+        register(this.context,this.bind);
     }
 
     
@@ -64,11 +66,11 @@ public class GertecPrinter {
         context.sendBroadcast(new Intent(this.initializeIntent));
         context.registerReceiver(new BroadcastReceiver() {
             public void onReceive(Context context, Intent intent) {
-                ServiceConnection unused = PosDigital.this.connection = PosDigital.this.getServiceConnection(context, bindCallback);
-                Intent intent2 = new Intent(PosDigital.this.servicePackage);
+                ServiceConnection unused = this.connection = this.getServiceConnection(context, bindCallback);
+                Intent intent2 = new Intent(this.servicePackage);
                 intent2.setPackage(PosDigital.this.servicePackage);
                 context.startService(intent2);
-                context.bindService(intent2, PosDigital.this.connection, 1);
+                context.bindService(intent2, this.connection, 1);
                 context.unregisterReceiver(this);
             }
         }, new IntentFilter(this.initializedIntent));
@@ -185,7 +187,7 @@ public class GertecPrinter {
         return new ServiceConnection() {
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 try {
-                    IMainService unused = PosDigital.this.mainService = IMainService.Stub.asInterface(iBinder);
+                    IMainService unused = this.mainService = IMainService.Stub.asInterface(iBinder);
                     bindCallback.onConnected();
                 } catch (Exception e) {
                     bindCallback.onError(e);
@@ -199,7 +201,7 @@ public class GertecPrinter {
 
             /* access modifiers changed from: package-private */
             public final /* synthetic */ void lambda$onServiceConnected$0$PosDigital$3(Context context, BindCallback bindCallback) {
-                PosDigital.this._register(context, bindCallback);
+                this._register(context, bindCallback);
             }
 
             public void onServiceDisconnected(ComponentName componentName) {
@@ -219,7 +221,7 @@ public class GertecPrinter {
         Log.e(TAG, "start register: ");
         posDigital = new PosDigital();
         startService(context);
-        posDigital._register(context, bindCallback);
+        _register(context, bindCallback);
         Log.e(TAG, "finish register: ");
     }
 
@@ -256,7 +258,7 @@ public class GertecPrinter {
     }
 
     public static void unregister(Context context) {
-        posDigital._unregister(context);
+        _unregister(context);
     }
 
 
@@ -287,4 +289,22 @@ public class GertecPrinter {
     }
 
 
+
+
+
+}
+final /* synthetic */ class PosDigital$3$$Lambda$0 implements IBinder.DeathRecipient {
+    private final PosDigital.AnonymousClass3 arg$1;
+    private final Context arg$2;
+    private final PosDigital.BindCallback arg$3;
+
+    PosDigital$3$$Lambda$0(PosDigital.AnonymousClass3 r1, Context context, PosDigital.BindCallback bindCallback) {
+        this.arg$1 = r1;
+        this.arg$2 = context;
+        this.arg$3 = bindCallback;
+    }
+
+    public void binderDied() {
+        this.arg$1.lambda$onServiceConnected$0$PosDigital$3(this.arg$2, this.arg$3);
+    }
 }
