@@ -112,7 +112,7 @@ public class GertecPrinter {
      * */
     public String getStatusImpressora(){
         
-        return this.posDigital.getInstance().isInitiated();
+        return this.posDigital.getInstance().isInitiated()==true?"Iniciado":"Nao iniciado";
     }
 
     //Metodos novos para GetNet
