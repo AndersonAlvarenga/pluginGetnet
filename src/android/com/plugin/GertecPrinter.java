@@ -39,7 +39,7 @@ public class GertecPrinter {
     private String notInitializedIntent = "com.getnet.posdigital.service.NOT_INITIALIZED";
     /* access modifiers changed from: private */
     public String servicePackage = "com.getnet.posdigital.service";
-    public BindCallback bind = new BindCallback();
+
 
     public interface BindCallback {
         void onConnected();
@@ -56,7 +56,7 @@ public class GertecPrinter {
     **/
     public GertecPrinter(Context c) {
         this.context = c;
-        register(this.context,this.bind);
+        register(this.context,GertecPrinter.BindCallback);
     }
 
     
@@ -66,11 +66,11 @@ public class GertecPrinter {
         context.sendBroadcast(new Intent(this.initializeIntent));
         context.registerReceiver(new BroadcastReceiver() {
             public void onReceive(Context context, Intent intent) {
-                ServiceConnection unused = this.connection = this.getServiceConnection(context, bindCallback);
-                Intent intent2 = new Intent(this.servicePackage);
-                intent2.setPackage(PosDigital.this.servicePackage);
+                ServiceConnection unused = GertecPrinter.getInstance().connection = GertecPrinter.getInstance().getServiceConnection(context, bindCallback);
+                Intent intent2 = new Intent(GertecPrinter.getInstance().servicePackage);
+                intent2.setPackage(GertecPrinter.getInstance().servicePackage);
                 context.startService(intent2);
-                context.bindService(intent2, this.connection, 1);
+                context.bindService(intent2, GertecPrinter.getInstance().connection, 1);
                 context.unregisterReceiver(this);
             }
         }, new IntentFilter(this.initializedIntent));
@@ -187,13 +187,13 @@ public class GertecPrinter {
         return new ServiceConnection() {
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 try {
-                    IMainService unused = this.mainService = IMainService.Stub.asInterface(iBinder);
+                    IMainService unused = GertecPrinter.getInstance().mainService = IMainService.Stub.asInterface(iBinder);
                     bindCallback.onConnected();
                 } catch (Exception e) {
                     bindCallback.onError(e);
                 }
                 try {
-                    iBinder.linkToDeath(new PosDigital$3$$Lambda$0(this, context, bindCallback), 1);
+                    iBinder.linkToDeath(new PosDigital$3$$Lambda$0(this, context, BindCallback), 1);
                 } catch (RemoteException e2) {
                     throw new RuntimeException("MainService link to death error.", e2);
                 }
@@ -201,7 +201,7 @@ public class GertecPrinter {
 
             /* access modifiers changed from: package-private */
             public final /* synthetic */ void lambda$onServiceConnected$0$PosDigital$3(Context context, BindCallback bindCallback) {
-                this._register(context, bindCallback);
+                GertecPrinter.getInstance()._register(context, bindCallback);
             }
 
             public void onServiceDisconnected(ComponentName componentName) {
@@ -221,7 +221,7 @@ public class GertecPrinter {
         Log.e(TAG, "start register: ");
         posDigital = new PosDigital();
         startService(context);
-        _register(context, bindCallback);
+        GertecPrinter.getInstance()_register(context, bindCallback);
         Log.e(TAG, "finish register: ");
     }
 
@@ -294,11 +294,11 @@ public class GertecPrinter {
 
 }
 final /* synthetic */ class PosDigital$3$$Lambda$0 implements IBinder.DeathRecipient {
-    private final PosDigital.AnonymousClass3 arg$1;
+    private final AnonymousClass3 arg$1;
     private final Context arg$2;
-    private final PosDigital.BindCallback arg$3;
+    private final BindCallback arg$3;
 
-    PosDigital$3$$Lambda$0(PosDigital.AnonymousClass3 r1, Context context, PosDigital.BindCallback bindCallback) {
+    PosDigital$3$$Lambda$0(AnonymousClass3 r1, Context context, BindCallback bindCallback) {
         this.arg$1 = r1;
         this.arg$2 = context;
         this.arg$3 = bindCallback;
