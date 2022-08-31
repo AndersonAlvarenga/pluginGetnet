@@ -80,6 +80,7 @@ public class GertecPrinter {
         }catch(Exception e){
             return e.getMessage();
         }
+        
         return "Sucess";
     }
 
