@@ -33,7 +33,7 @@ public class GertecPrinter {
     **/
     public GertecPrinter(Context c) {
         this.context = c;
-        PosDigital.register(this.context, PosDigital.bindCallback);
+        PosDigital.register(this.context);
     }
 
     
@@ -111,7 +111,7 @@ public class GertecPrinter {
     //Metodos novos para GetNet
 
     public String beeper(){
-        this.posDigital.getInstance().startService();
+        this.posDigital.startService(this.context);
         try{
             IBeeperService beep = this.posDigital.getInstance().getBeeper();
         }catch(Exception e){
