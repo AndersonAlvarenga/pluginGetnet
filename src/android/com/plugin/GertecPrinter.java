@@ -56,7 +56,9 @@ public class GertecPrinter {
     public PosDigital getInstance(){
         return PosDigital.getInstance();
     }
-    
+    public ServiceConnection getServiceConnection(Context context, final PosDigital.BindCallback callback){
+        return PosDigital.getInstance().getServiceConnection(context, callback);
+    }
      /**
      * Método que retorna o atual estado da impressora
      *
@@ -73,14 +75,14 @@ public class GertecPrinter {
 
     public String beeper(){
         GertecPrinter.this.getInstance().register(this.context, this.bindCallback);
-        GertecPrinter.this.getInstance().getServiceConnection(this.context, this.bindCallback);
+        GertecPrinter.this.getServiceConnection(this.context, this.bindCallback);
         try{
             IBeeperService beep = GertecPrinter.posDigital.getBeeper();
             beep.success();
         }catch(Exception e){
             return e.getMessage();
         }
-        
+
         return "Sucess";
     }
 
