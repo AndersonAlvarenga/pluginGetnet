@@ -22,6 +22,7 @@ import com.getnet.posdigital.printer.IPrinterService;
 import com.getnet.posdigital.stat.IStatService;
 import com.getnet.posdigital.PosDigital;
 import com.getnet.posdigital.PosDigital.BindCallback;
+import android.content.ServiceConnection;
 
 
 
@@ -60,8 +61,6 @@ public class GertecPrinter {
         register(this.context,this.bindCallback);
     }
 
-  
-    
     /* access modifiers changed from: private */
     /*X
     public void _register(final Context context, final BindCallback bindCallback) {
@@ -278,13 +277,13 @@ public class GertecPrinter {
      * */
     public String getStatusImpressora(){
         
-        return getInstance().isInitiated()==true?"Iniciado":"Nao iniciado";
+        return GertecPrinter.posDigital.isInitiated()==true?"Iniciado":"Nao iniciado";
     }
 
     //Metodos novos para GetNet
 
     public String beeper(){
-        startService(this.context);
+        GertecPrinter.posDigital.register(this.context, this.bindCallback);
         try{
             IBeeperService beep = GertecPrinter.posDigital.getBeeper();
         }catch(Exception e){
@@ -297,19 +296,4 @@ public class GertecPrinter {
 
 
 
-}
-final /* synthetic */ class PosDigital$3$$Lambda$0 implements IBinder.DeathRecipient {
-    private final AnonymousClass3 arg$1;
-    private final Context arg$2;
-    private final BindCallback arg$3;
-
-    PosDigital$3$$Lambda$0(AnonymousClass3 r1, Context context, BindCallback bindCallback) {
-        this.arg$1 = r1;
-        this.arg$2 = context;
-        this.arg$3 = bindCallback;
-    }
-
-    public void binderDied() {
-        this.arg$1.lambda$onServiceConnected$0$PosDigital$3(this.arg$2, this.arg$3);
-    }
 }
