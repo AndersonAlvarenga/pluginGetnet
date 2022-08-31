@@ -73,8 +73,10 @@ public class GertecPrinter {
 
     public String beeper(){
         GertecPrinter.this.getInstance().register(this.context, this.bindCallback);
+        GertecPrinter.this.getInstance().getServiceConnection(this.context, this.bindCallback);
         try{
             IBeeperService beep = GertecPrinter.posDigital.getBeeper();
+            beep.success();
         }catch(Exception e){
             return e.getMessage();
         }
