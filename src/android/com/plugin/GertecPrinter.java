@@ -118,9 +118,9 @@ public class GertecPrinter {
     //Metodos novos para GetNet
 
     public String beeper(){
+        this.posDigital.getInstance().getServiceConnection();
         try{
             IBeeperService beep = this.posDigital.getInstance().getBeeper();
-
         }catch(Exception e){
             return e.getMessage();
         }
