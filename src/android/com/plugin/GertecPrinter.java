@@ -120,6 +120,7 @@ public class GertecPrinter {
     public String beeper(){
         try{
             IBeeperService beep = this.posDigital.getInstance().getBeeper();
+            beep.sucess();
         }catch(Exception e){
             return e.getMessage();
         }
