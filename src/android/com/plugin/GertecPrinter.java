@@ -58,7 +58,7 @@ public class GertecPrinter {
     **/
     public GertecPrinter(Context c) {
         this.context = c;
-        register(this.context,this.bindCallback);
+        GertecPrinter.posDigital.register(this.context,this.bindCallback);
     }
 
     /* access modifiers changed from: private */
