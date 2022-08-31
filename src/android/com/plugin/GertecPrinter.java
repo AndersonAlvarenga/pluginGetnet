@@ -66,7 +66,7 @@ public class GertecPrinter {
         context.sendBroadcast(new Intent(this.initializeIntent));
         context.registerReceiver(new BroadcastReceiver() {
             public void onReceive(Context context, Intent intent) {
-                ServiceConnection unused = GertecPrinter.getInstance().connection = GertecPrinter.getInstance().getServiceConnection(context, bindCallback);
+                ServiceConnection unused = GertecPrinter.this.connection = GertecPrinter.getInstance().getServiceConnection(context, bindCallback);
                 Intent intent2 = new Intent(GertecPrinter.getInstance().servicePackage);
                 intent2.setPackage(GertecPrinter.getInstance().servicePackage);
                 context.startService(intent2);
