@@ -20,6 +20,7 @@ import com.getnet.posdigital.led.ILedService;
 import com.getnet.posdigital.mifare.IMifareService;
 import com.getnet.posdigital.printer.IPrinterService;
 import com.getnet.posdigital.stat.IStatService;
+import com.getnet.posdigital.PosDigital;
 
 
 public class GertecPrinter {
@@ -38,6 +39,13 @@ public class GertecPrinter {
     /* access modifiers changed from: private */
     public String servicePackage = "com.getnet.posdigital.service";
 
+    public interface BindCallback {
+        void onConnected();
+
+        void onDisconnected();
+
+        void onError(Exception exc);
+    }
 
 
     /**
@@ -50,14 +58,7 @@ public class GertecPrinter {
     }
 
     
-    public interface BindCallback {
-        void onConnected();
-
-        void onDisconnected();
-
-        void onError(Exception exc);
-    }
-
+    
     /* access modifiers changed from: private */
     public void _register(final Context context, final BindCallback bindCallback) {
         context.sendBroadcast(new Intent(this.initializeIntent));
