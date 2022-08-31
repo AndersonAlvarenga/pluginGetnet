@@ -67,19 +67,20 @@ public class GertecPrinter {
         
         return GertecPrinter.this.getInstance().isInitiated()==true?"Iniciado":"Nao iniciado";
     }
-    public String register(Context context, final PosDigital.BindCallback callback){
-        try{PosDigital.register(context, callback);
-        }catch(Exception e){
-            return e.getMessage();
-        }
-        return "Sucess";
+    public void register(Context context, final PosDigital.BindCallback callback){
+       PosDigital.register(context, callback);
     }
 
     //Metodos novos para GetNet
 
     public String beeper(){
-        GertecPrinter.this.getInstance().register(this.context, this.bindCallback);
-        GertecPrinter.this.register(this.context, this.bindCallback);
+        //GertecPrinter.this.getInstance().register(this.context, this.bindCallback);
+        try{
+            GertecPrinter.this.register(this.context, this.bindCallback);
+        }catch(Exception e){
+            return e.getMessage();
+        }
+        
         try{
             IBeeperService beep = GertecPrinter.posDigital.getBeeper();
             beep.success();
