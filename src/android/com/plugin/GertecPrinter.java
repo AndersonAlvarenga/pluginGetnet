@@ -221,7 +221,7 @@ public class GertecPrinter {
         Log.e(TAG, "start register: ");
         posDigital = new PosDigital();
         startService(context);
-        GertecPrinter.getInstance()_register(context, bindCallback);
+        GertecPrinter.getInstance()._register(context, bindCallback);
         Log.e(TAG, "finish register: ");
     }
 
