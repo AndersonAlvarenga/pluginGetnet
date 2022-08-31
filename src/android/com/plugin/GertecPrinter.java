@@ -21,6 +21,7 @@ import com.getnet.posdigital.mifare.IMifareService;
 import com.getnet.posdigital.printer.IPrinterService;
 import com.getnet.posdigital.stat.IStatService;
 import com.getnet.posdigital.PosDigital;
+import com.getnet.posdigital.PosDigital.BindCallback;
 
 
 
@@ -41,13 +42,13 @@ public class GertecPrinter {
     public String servicePackage = "com.getnet.posdigital.service";
 
 
-    public interface BindCallback {
+    /*public interface BindCallback {
         void onConnected();
 
         void onDisconnected();
 
         void onError(Exception exc);
-    }
+    }*/
 
 
     /**
@@ -56,7 +57,7 @@ public class GertecPrinter {
     **/
     public GertecPrinter(Context c) {
         this.context = c;
-        register(this.context,GertecPrinter.BindCallback);
+        register(this.context,BindCallback);
     }
 
     
@@ -66,7 +67,7 @@ public class GertecPrinter {
         context.sendBroadcast(new Intent(this.initializeIntent));
         context.registerReceiver(new BroadcastReceiver() {
             public void onReceive(Context context, Intent intent) {
-                ServiceConnection unused = GertecPrinter.this.connection = GertecPrinter.getInstance().getServiceConnection(context, bindCallback);
+                ServiceConnection unused = GertecPrinter.this.connection = GertecPrinter.getInstance().getServiceConnection(context, BindCallback);
                 Intent intent2 = new Intent(GertecPrinter.getInstance().servicePackage);
                 intent2.setPackage(GertecPrinter.getInstance().servicePackage);
                 context.startService(intent2);
