@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.content.ServiceConnection;
 
 
 import com.google.zxing.BarcodeFormat;
@@ -23,6 +24,7 @@ public class GertecPrinter {
     private Activity activity;
     private Context context;
     private PosDigital posDigital;
+    private static ServiceConnection connection;
 
 
     /**
@@ -31,19 +33,10 @@ public class GertecPrinter {
     **/
     public GertecPrinter(Context c) {
         this.context = c;
-        startIGEDI();
+        PosDigital.register(this.context, PosDigital.bindCallback);
     }
 
-    /**
-    * Método que instância a classe GEDI da lib deve ser usado apenas para o GPOS 700
-    *
-    * @apiNote = Este mátodo faz a instância da classe GEDI através de uma Thread.
-    *            Será sempre chamado na construção da classe.
-    *            Não alterar...
-    **/
-    private void startIGEDI() {
-        
-    }
+    
 
     /**
     * Método que recebe a configuração para ser usada na impressão
@@ -118,7 +111,7 @@ public class GertecPrinter {
     //Metodos novos para GetNet
 
     public String beeper(){
-        this.posDigital.getInstance().getServiceConnection();
+        this.posDigital.getInstance().startService();
         try{
             IBeeperService beep = this.posDigital.getInstance().getBeeper();
         }catch(Exception e){
