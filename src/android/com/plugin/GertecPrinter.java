@@ -74,7 +74,7 @@ public class GertecPrinter {
     public String beeper(){
         //GertecPrinter.this.getInstance().register(this.context, this.bindCallback);
         try{
-            PosDigital.register(context, callback);
+            PosDigital.register(context, this.bindCallback);
         }catch(Exception e){
             return e.getMessage();
         }
