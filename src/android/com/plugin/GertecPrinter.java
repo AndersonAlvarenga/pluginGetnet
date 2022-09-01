@@ -71,7 +71,6 @@ public class GertecPrinter {
     //Metodos novos para GetNet
 
     public String beeper(){
-        //GertecPrinter.this.getInstance().register(this.context, this.bindCallback);
         try{
             PosDigital.register(this.context, this.bindCallback);
         }catch(Exception e){
