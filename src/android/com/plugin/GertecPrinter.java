@@ -67,14 +67,13 @@ public class GertecPrinter {
         
         return GertecPrinter.this.getInstance().isInitiated()==true?"Iniciado":"Nao iniciado";
     }
-  
-
+    
     //Metodos novos para GetNet
 
     public String beeper(){
         //GertecPrinter.this.getInstance().register(this.context, this.bindCallback);
         try{
-            PosDigital.register(context, this.bindCallback);
+            PosDigital.register(this.context, this.bindCallback);
         }catch(Exception e){
             return e.getMessage();
         }
